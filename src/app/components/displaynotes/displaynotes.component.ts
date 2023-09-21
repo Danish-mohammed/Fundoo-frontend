@@ -39,7 +39,6 @@ export class DisplaynotesComponent implements OnInit {
       console.log(message.data[0]);
       this.searchword = message.data[0]
     });
-   
   }
 
 
@@ -51,7 +50,6 @@ export class DisplaynotesComponent implements OnInit {
     });
     dialogReff.afterClosed().subscribe(result => {
       console.log('the dialog closed', result);
-      
     })
   }
 
@@ -60,7 +58,5 @@ export class DisplaynotesComponent implements OnInit {
     this.msg = $event
     this.displaytogetallnotes.emit(this.msg)
   }
-
-
 }
 

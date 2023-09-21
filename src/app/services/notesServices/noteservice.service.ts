@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../httpServices/http.service';
 
@@ -10,7 +10,7 @@ export class NoteserviceService {
   token: any;
   id: any;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,private httpClient: HttpClient) {
     this.token = localStorage.getItem('token');
   }
 
@@ -24,19 +24,19 @@ export class NoteserviceService {
         'Authorization': 'Bearer ' + this.token
       })
     }
-
-    return this.httpService.postService('Notes/Create', reqdata, true, header);
+    let id = localStorage.getItem('token')
+    return this.httpClient.post(`http://localhost:9090/api/notes/${id}`, reqdata);
   }
 
   getAllNoteService() {
     let header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
-
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpService.getService('Notes/RetrieveAll', true, header);
+    let id= localStorage.getItem('token')
+    return this.httpClient.get(`http://localhost:9090/api/notes/retriveByUser/${id}`);
 
   }
 

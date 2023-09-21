@@ -26,12 +26,12 @@ export class GetallnotesComponent implements OnInit {
   getAllNotes(){
     this.notes.getAllNoteService().subscribe((request:any)=> {
       console.log("request data", request);
-      this.notesArray = request.data;
+      this.notesArray = request;
       console.log(this.notesArray);
       this.notesArray.reverse();
-      this.notesArray = this.notesArray.filter((notedata:any)=>{
-        return notedata.trash === false && notedata.archive ===false;
-      })
+      // this.notesArray = this.notesArray.filter((notedata:any)=>{
+      //   return notedata.trash === false && notedata.archive ===false;
+      // })
     })
   }
 

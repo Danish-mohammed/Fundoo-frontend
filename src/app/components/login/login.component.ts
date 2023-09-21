@@ -38,15 +38,15 @@ token:any
               let payload = {
                 email: this.loginForm.value.email,
                 password: this.loginForm.value.password,
-                service:'advance'
               }
-    
+              console.log(payload);
+              
               this.user.LogIn(payload).subscribe((response:any) =>{
-                console.log(response);
-                localStorage.setItem("token",response.data);
+                console.log(response.id);
+                localStorage.setItem("token",response.id);
                 this.router.navigateByUrl('/dashboard/notes');
               })
-              let snackbar = this.snackbar.open("Login Successful",'',{duration: 3000});
+              this.snackbar.open("Login Successful",'',{duration: 3000});
               
           }
           

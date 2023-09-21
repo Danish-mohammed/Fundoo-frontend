@@ -24,7 +24,7 @@ const routes: Routes = [
   //{path:'icons', component:IconsComponent},
   {path: 'forgotpassword', component:ForgotpasswordComponent},
   {path: 'resetpassword', component:ResetpasswordComponent},
-  {path: 'dashboard', component:DashboardComponent,canActivate:[AuthenticationGuard],
+  {path: 'dashboard', component:DashboardComponent,
     children:[
       {path:'notes', component:GetallnotesComponent},
       {path:'trash',component:TrashComponent},

@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../httpServices/http.service';
 
@@ -8,7 +8,7 @@ import { HttpService } from '../httpServices/http.service';
 export class UserService {
   token:any;
 
-  constructor(private httpService : HttpService) {
+  constructor(private httpService : HttpService, private httpClient: HttpClient) {
     this.token = localStorage.getItem('token');
    }
 
@@ -22,7 +22,7 @@ export class UserService {
       })
     }
 
-    return this.httpService.postService('User/Login',reqdata,false,header);
+    return this.httpClient.post('http://localhost:9090/api/user/login',reqdata);
   }
 
   Registration(reqdata:any){

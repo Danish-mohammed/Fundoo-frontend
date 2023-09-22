@@ -20,8 +20,8 @@ export class UpdateComponent implements OnInit {
     public dialogRef: MatDialogRef<UpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,private snackbar:MatSnackBar) {
     this.title=data.title;
-    this.description=data.desciption;
-    this.id=data.noteid;
+    this.description=data.description;
+    this.id=data.id;
    }
 
    onNoClick():void{
@@ -34,16 +34,16 @@ export class UpdateComponent implements OnInit {
   closeDialog(){
     let payload = {
       title:this.title,
-      desciption:this.description,
-      noteid:this.id
+      description:this.description,
+      // noteid:this.id
     } 
-    console.log(payload);
-    this.notes.updateNotes(payload).subscribe((response:any) =>{
+    let id = this.id;
+    console.log(payload,id);
+    this.notes.updateNotes(payload,id).subscribe((response:any) =>{
       console.log(response);
       this.dialogRef.close(response);
     })
     this.dialogRef.close();
-    let snackbar = this.snackbar.open("Note Updated",'',{duration: 3000});
+    this.snackbar.open("Note Updated",'',{duration: 3000});
   }
-
 }

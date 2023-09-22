@@ -41,7 +41,7 @@ export class NotesComponent implements OnInit {
     if (this.notesForm.valid) {
       let data = {
         title:this.notesForm.value.title,
-        desciption:this.notesForm.value.discription
+        description:this.notesForm.value.discription
         //service:'advance'
       } 
       console.log(data);

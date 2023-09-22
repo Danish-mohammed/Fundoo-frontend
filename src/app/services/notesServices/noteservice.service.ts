@@ -40,15 +40,16 @@ export class NoteserviceService {
 
   }
 
-  updateNotes(data: any) {
-    console.log(this.token);
+  updateNotes(data: any,id:any) {
+    console.log(data);
     let header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpService.putService(`Notes/Update?noteId=+${data.noteid}`, data, true, header);
+    // let id=localStorage.getItem("token")
+    return this.httpClient.put(`http://localhost:9090/api/notes/${id}`, data);
   }
 
   trashnotes(data: any) {

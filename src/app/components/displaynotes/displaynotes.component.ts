@@ -15,7 +15,6 @@ export class DisplaynotesComponent implements OnInit {
 
   panelOpenState = false;
   show = false;
-
   submitted = false;
   titleImgOne = true;
   titleImgTwo = false;
@@ -49,6 +48,7 @@ export class DisplaynotesComponent implements OnInit {
       data: notes
     });
     dialogReff.afterClosed().subscribe(result => {
+      window.location.reload();
       console.log('the dialog closed', result);
     })
   }

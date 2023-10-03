@@ -1,10 +1,41 @@
 <div style="display: flex;" cdkMenuBar>
   <div class="iconimg4">
     <!-- <a href="javascript:void(0)" (click)="unarchieve()"><img src="../../../assets/icons/unarchive.png" alt="" height="20px" *ngIf="!istrash && isarchieve"></a>
-    <a href="javascript:void(0)" (click)="delete()"><img src="../../../assets/icons/delete_forever.png" alt="" height="20px" *ngIf="!isarchieve && istrash"></a>
-    <a href="javascript:void(0)" (click)="untrash()"><img src="../../../assets/icons/restore.png" alt="" height="20px" *ngIf="!isarchieve && istrash"></a> -->
-    <!-- <a href="javascript:void(0)"><img src="../../../assets/icons/reminder.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"></a> -->
-    <!-- <a href="javascript:void(0)"><img src="../../../assets/icons/collabrator.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"> </a> -->
+    <a href="javascript:void(0)" (click)="delete()"><img src="../../../assets/icons/delete_forever.png" alt="" height="20px" *ngIf="!isarchieve && istrash"></a> -->
+    <!-- <a href="javascript:void(0)" (click)="untrash()"><img src="../../../assets/icons/restore.png" alt="" height="20px" *ngIf="!isarchieve && istrash"></a> -->
+    <a href="javascript:void(0)" 
+      (mouseenter)="showUnarchiveName = true" 
+      (mouseleave)="showUnarchiveName = false" 
+      (click)="unarchieve()">
+      <img src="../../../assets/icons/unarchive.png" 
+          alt="" 
+          height="20px" 
+          *ngIf="!istrash && isarchieve">
+      <span class="icon-name" *ngIf="showUnarchiveName">Unarchive</span>
+    </a>
+
+    <a href="javascript:void(0)" 
+        (mouseenter)="showDeleteName = true" 
+        (mouseleave)="showDeleteName = false" 
+        (click)="delete()">
+        <img src="../../../assets/icons/delete_forever.png" 
+            alt="" 
+            height="20px" 
+            *ngIf="!isarchieve && istrash">
+      <span class="icon-name" *ngIf="showDeleteName">Delete Permanently</span>
+    </a>
+    <a href="javascript:void(0)" 
+      (mouseenter)="isHovered = true" 
+      (mouseleave)="isHovered = false" 
+      (click)="untrash()">
+      <img src="../../../assets/icons/restore.png" 
+          alt="" 
+          height="20px" 
+          *ngIf="!isarchieve && istrash">
+      <span *ngIf="isHovered" class="icon-name">{{ iconName }}</span>
+    </a>
+    <a href="javascript:void(0)"><img src="../../../assets/icons/reminder.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"></a> 
+   <a href="javascript:void(0)"><img src="../../../assets/icons/collabrator.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"> </a> 
     <a href="javascript:void(0)" mat-icon-button [matMenuTriggerFor]="menu"> <img
         src="../../../assets/icons/backgrouncolor.svg" alt="" style="margin-top: -20px" height="20px" *ngIf="!isarchieve && !istrash"></a>
     <mat-menu #menu="matMenu">
@@ -14,7 +45,7 @@
         </div>
       </div>
     </mat-menu>
-    <!-- <a href="javascript:void(0)"><img src="../../../assets/icons/image.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"></a> -->
+    <a href="javascript:void(0)"><img src="../../../assets/icons/image.svg" alt="" height="20px" *ngIf="!isarchieve && !istrash"></a>
     <a href="javascript:void(0)" (click)="archieve()"><img src="../../../assets/icons/archive.svg" alt="" height="20px" *ngIf="!istrash && !isarchieve "></a>
     
     <a mat-icon-button cdkMenuItem [cdkMenuTriggerFor]="file"><img src="../../../assets/icons/more.svg" alt="" height="20px"

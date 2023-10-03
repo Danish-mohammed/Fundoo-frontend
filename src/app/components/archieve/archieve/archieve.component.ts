@@ -27,10 +27,10 @@ export class ArchieveComponent implements OnInit {
   getAllNotes(){
     this.notes.getAllNoteService().subscribe((request:any)=> {
       console.log("request data", request);
-      this.notesArray = request.data;
+      this.notesArray = request;
       console.log(this.notesArray);
       this.notesArray = this.notesArray.filter((notedata:any)=>{
-        return notedata.archive ===false;
+        return notedata.archived ===true;
       })
     })
   }

@@ -6,7 +6,6 @@ import { HttpService } from '../httpServices/http.service';
   providedIn: 'root'
 })
 export class NoteserviceService {
-
   token: any;
   id: any;
 
@@ -59,8 +58,19 @@ export class NoteserviceService {
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpService.putService(`Notes/Trash?noteId=${data.noteId}`, data, true, header);
+    return this.httpClient.put(`http://localhost:9090/api/notes/trash/${data}`, false);
   }
+
+  restore(data: any) {
+    let header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    return this.httpClient.put(`http://localhost:9090/api/notes/restore/${data}`, false);
+  }
+
   archievenote(data: any) {
     let header = {
       headers: new HttpHeaders({
@@ -68,7 +78,11 @@ export class NoteserviceService {
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpService.putService(`Notes/Archieve?noteId=${data.noteId}`, data, true, header);
+    return this.httpClient.put(`http://localhost:9090/api/notes/archive/${data}`,false);
+  }
+
+  unarchievenote(id: any) {
+    return this.httpClient.put(`http://localhost:9090/api/notes/unarchive/${id}`,false);
   }
 
   changeColor(data: any) {
@@ -87,7 +101,7 @@ export class NoteserviceService {
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpService.deleteService(`Notes/Delete?noteid=${data.noteId}`, data, true, header);
+    return this.httpClient.delete(`http://localhost:9090/api/notes/${data}`);
   }
 
 }

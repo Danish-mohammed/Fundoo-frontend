@@ -20,12 +20,17 @@ export class IconsComponent implements OnInit {
   data: any;
   noteid: any;
   istrash: boolean = false;
-  isarchieve:boolean=false;
-
+  isarchieve: boolean = false;
+  isHovered: boolean = false;
+  iconName: string = 'Restore'; // Initial icon name
+  showUnarchiveName: boolean = false;
+  showDeleteName: boolean = false;
   constructor(public notes: NoteserviceService, private snackbar:MatSnackBar, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     let comp = this.route.snapshot.component;
+    console.log(comp);
+    
     if(comp == DisplaynotesComponent){
 
     }
@@ -61,7 +66,7 @@ export class IconsComponent implements OnInit {
     this.notesCard.color=color;
     let data={
       color:color,
-      noteId: [this.notesCard.noteid],
+      noteId: this.notesCard.id,
     }
     console.log(data);
     this.notes.changeColor(data).subscribe((response:any)=>{
@@ -71,66 +76,52 @@ export class IconsComponent implements OnInit {
   }
 
   trash() {
-    let data = {
-      noteId: [this.notesCard.noteid],
-      //noteId:this.noteid,
-    }
-    console.log(data);
-    this.notes.trashnotes(data).subscribe((response: any) => {
+    let id = this.notesCard.id
+    console.log(id);
+    this.notes.trashnotes(id).subscribe((response: any) => {
       console.log(response);
       this.iconstodisplay.emit(response);
-      
+      this.snackbar.open("Note is in trash",'',{duration: 3000});
     })
-     this.snackbar.open("note is in trash",'',{duration: 3000});
   }
   untrash() {
-    let data = {
-      noteId: [this.notesCard.noteid],
-      //noteId:this.noteid,
-    }
-    console.log(data);
-    this.notes.trashnotes(data).subscribe((response: any) => {
+    let id = this.notesCard.id
+    console.log(id);
+    this.notes.restore(id).subscribe((response: any) => {
       console.log(response);
       this.iconstodisplay.emit(response);
-      
+      this.snackbar.open("Note is Restored",'',{duration: 3000});
     })
-     this.snackbar.open("note is in restored",'',{duration: 3000});
   }
   archieve() {
-    let data = {
-      noteId: [this.notesCard.noteid]
-    }
-    console.log(data);
-    this.notes.archievenote(data).subscribe((response: any) => {
+    let id = this.notesCard.id;
+    console.log(id);
+    this.notes.archievenote(id).subscribe((response: any) => {
       console.log(response);
       this.iconstodisplay.emit(response);
+      this.snackbar.open("Note is in Archieve",'',{duration: 3000});
     })
-    this.snackbar.open("note is in archieve",'',{duration: 3000});
   }
   unarchieve(){
-    let data = {
-      noteId: [this.notesCard.noteid]
-    }
-    console.log(data);
-    this.notes.archievenote(data).subscribe((response: any) => {
+    let id = this.notesCard.id;
+    console.log(id);
+    this.notes.unarchievenote(id).subscribe((response: any) => {
       console.log(response);
       this.iconstodisplay.emit(response);
+      this.snackbar.open("Note is in Unarchieve",'',{duration: 3000});
     })
-    this.snackbar.open("note is in Unarchieve",'',{duration: 3000});
   }
 
   delete() {
-    let data = {
-      noteId: [this.notesCard.noteid]
-    }
-    console.log(data);
-    this.notes.deletenote(data).subscribe((response: any) => {
+    let id = this.notesCard.id
+    console.log(id);
+    this.notes.deletenote(id).subscribe((response: any) => {
       console.log(response);
       this.iconstodisplay.emit(response);
+      this.snackbar.open("Note is deleted permanently",'',{duration: 3000});
     })
-    this.snackbar.open("note is in deleted permanently",'',{duration: 3000});
   }
 
 
 }
-export class CdkMenuMenubarExample {}
+export class CdkMenuMenubarExample { }

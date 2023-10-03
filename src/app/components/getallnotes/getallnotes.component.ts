@@ -29,9 +29,10 @@ export class GetallnotesComponent implements OnInit {
       this.notesArray = request;
       console.log(this.notesArray);
       this.notesArray.reverse();
-      // this.notesArray = this.notesArray.filter((notedata:any)=>{
-      //   return notedata.trash === false && notedata.archive ===false;
-      // })
+      console.log(this.notesArray);
+      this.notesArray = this.notesArray.filter((notedata: any) => {
+        return notedata.trash === false && notedata.archived ===false;
+      })
     })
   }
 
